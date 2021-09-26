@@ -38,7 +38,8 @@
             this.btnGeneratePRJ = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtVersion = new System.Windows.Forms.NumericUpDown();
-            this.btnBuildDirect = new System.Windows.Forms.Button();
+            this.btnBuildAPK = new System.Windows.Forms.Button();
+            this.btnSign4Release = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtVersion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -145,22 +146,33 @@
             0,
             0});
             // 
-            // btnBuildDirect
+            // btnBuildAPK
             // 
-            this.btnBuildDirect.Location = new System.Drawing.Point(13, 235);
-            this.btnBuildDirect.Name = "btnBuildDirect";
-            this.btnBuildDirect.Size = new System.Drawing.Size(345, 36);
-            this.btnBuildDirect.TabIndex = 10;
-            this.btnBuildDirect.Text = "Build PRJ from \'compile\' folder";
-            this.btnBuildDirect.UseVisualStyleBackColor = true;
-            this.btnBuildDirect.Click += new System.EventHandler(this.btnBuildDirect_Click);
+            this.btnBuildAPK.Location = new System.Drawing.Point(13, 235);
+            this.btnBuildAPK.Name = "btnBuildAPK";
+            this.btnBuildAPK.Size = new System.Drawing.Size(235, 36);
+            this.btnBuildAPK.TabIndex = 10;
+            this.btnBuildAPK.Text = "Build APK && sign for debug";
+            this.btnBuildAPK.UseVisualStyleBackColor = true;
+            this.btnBuildAPK.Click += new System.EventHandler(this.btnBuildDirect_Click);
+            // 
+            // btnSign4Release
+            // 
+            this.btnSign4Release.Location = new System.Drawing.Point(254, 235);
+            this.btnSign4Release.Name = "btnSign4Release";
+            this.btnSign4Release.Size = new System.Drawing.Size(106, 36);
+            this.btnSign4Release.TabIndex = 11;
+            this.btnSign4Release.Text = "sign for release";
+            this.btnSign4Release.UseVisualStyleBackColor = true;
+            this.btnSign4Release.Click += new System.EventHandler(this.btnSign4Release_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(372, 280);
-            this.Controls.Add(this.btnBuildDirect);
+            this.Controls.Add(this.btnSign4Release);
+            this.Controls.Add(this.btnBuildAPK);
             this.Controls.Add(this.txtVersion);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnGeneratePRJ);
@@ -194,7 +206,8 @@
         private System.Windows.Forms.Button btnGeneratePRJ;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown txtVersion;
-        private System.Windows.Forms.Button btnBuildDirect;
+        private System.Windows.Forms.Button btnBuildAPK;
+        private System.Windows.Forms.Button btnSign4Release;
     }
 }
 

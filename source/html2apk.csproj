@@ -50,11 +50,20 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSign4Release.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSign4Release.Designer.cs">
+      <DependentUpon>frmSign4Release.cs</DependentUpon>
+    </Compile>
     <Compile Include="General.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSign4Release.resx">
+      <DependentUpon>frmSign4Release.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

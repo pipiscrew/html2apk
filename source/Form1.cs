@@ -8,10 +8,8 @@ namespace html2apk
     public partial class Form1 : Form
     {
 
-      internal  string javaFilePath = General.GetFullPathFromWindows("java.exe");
-      internal string apkToolFilePath = Path.Combine(Application.StartupPath, "tools", "apktool.jar");
-      internal string signerFilePath = Path.Combine(Application.StartupPath, "tools", "uber-apk-signer-0.2.0.jar");
-      internal string compilePath = Path.Combine(Application.StartupPath, "compile");
+        internal string apkToolFilePath = Path.Combine(Application.StartupPath, "tools", "apktool.jar");
+        internal string compilePath = Path.Combine(Application.StartupPath, "compile");
 
         public Form1()
         {
@@ -33,49 +31,37 @@ namespace html2apk
 
             #region " validations "
 
-            if (javaFilePath == null)
+            if (General.javaFilePath == null)
             {
                 General.Mes("Can't find 'java.exe', please install JRE, operation aborted", MessageBoxIcon.Exclamation);
                 return;
             }
-
-            if (Directory.Exists(compilePath))
+            else if (Directory.Exists(compilePath))
             {
                 General.Mes(compilePath + "\n\nalready exists, please delete and try again, operation aborted", MessageBoxIcon.Exclamation);
                 return;
             }
-
-            if (string.IsNullOrEmpty(txtNamespace.Text))
+            else if (string.IsNullOrEmpty(txtNamespace.Text))
             {
                 General.Mes("Please fill the namespace, operation aborted!", MessageBoxIcon.Exclamation);
                 return;
             }
-
-            if (string.IsNullOrEmpty(txtAppName.Text))
+            else if (string.IsNullOrEmpty(txtAppName.Text))
             {
                 General.Mes("Please fill the application name, operation aborted!", MessageBoxIcon.Exclamation);
                 return;
             }
-
-            if (!File.Exists(apkToolFilePath))
+            else if (!File.Exists(apkToolFilePath))
             {
                 General.Mes(string.Format("Can't find {0}, operation aborted", apkToolFilePath), MessageBoxIcon.Exclamation);
                 return;
             }
-
-            if (!File.Exists(signerFilePath))
+            else if (!File.Exists(General.signerFilePath))
             {
-                General.Mes(string.Format("Can't find {0}, operation aborted", signerFilePath), MessageBoxIcon.Exclamation);
+                General.Mes(string.Format("Can't find {0}, operation aborted", General.signerFilePath), MessageBoxIcon.Exclamation);
                 return;
             }
-
-            if (!File.Exists(signerFilePath))
-            {
-                General.Mes(string.Format("Can't find {0}, operation aborted", signerFilePath), MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            if (!File.Exists(templateAndroidManifestFilePath))
+            else if (!File.Exists(templateAndroidManifestFilePath))
             {
                 General.Mes(string.Format("Can't find {0}, operation aborted", templateAndroidManifestFilePath), MessageBoxIcon.Exclamation);
                 return;
@@ -85,10 +71,6 @@ namespace html2apk
 
 
             string templatePath = Path.Combine(Application.StartupPath, "tools", "template");
-            
-            //delete
-            //if (Directory.Exists(compilePath))
-            //    Directory.Delete(compilePath, true);
 
             //copy template
             General.DirectoryCopy(templatePath, compilePath, true);
@@ -104,8 +86,7 @@ namespace html2apk
                 General.Mes(string.Format("Can't find {0}, operation aborted", androidManifestFilePath), MessageBoxIcon.Exclamation);
                 return;
             }
-
-            if (!File.Exists(stringsFilePath))
+            else if (!File.Exists(stringsFilePath))
             {
                 General.Mes(string.Format("Can't find {0}, operation aborted", stringsFilePath), MessageBoxIcon.Exclamation);
                 return;
@@ -141,8 +122,8 @@ namespace html2apk
 
             string assetsDir = Path.Combine(compilePath, "assets");
 
-           if ( General.Mes(string.Format("Project successfully built! \n\n Copy your HTML files to {0} \n\n After use the 'Build PRJ' button to generate an APK\n\n Do you like to browse 'assets' folder ?", assetsDir),MessageBoxIcon.Information, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-            Process.Start("explorer.exe", string.Format("/select,\"{0}\"", assetsDir));
+            if (General.Mes(string.Format("Project successfully built!\n\nCopy your HTML files to {0}\n\nAfter use the 'Build APK' button to generate an APK\n\nDo you like to browse 'assets' folder now ?", assetsDir), MessageBoxIcon.Information, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                Process.Start("explorer.exe", string.Format("/select,\"{0}\"", assetsDir));
         }
 
         internal void ReplaceAllSmaliNamespace()
@@ -170,30 +151,6 @@ namespace html2apk
             File.WriteAllText(filepath, g);
         }
 
-        internal static bool Compile(string exeFilepath, string args)
-        {
-            try
-            {
-                Process msbProcess = new Process();
-                msbProcess.StartInfo.FileName = Path.GetFileName(exeFilepath);
-                msbProcess.StartInfo.WorkingDirectory = Path.GetDirectoryName(exeFilepath);
-                msbProcess.StartInfo.Arguments = args;
-
-                msbProcess.Start();
-                msbProcess.WaitForExit();
-
-                if (msbProcess.ExitCode != 0)
-                    return false;
-                else
-                    return true;
-            }
-            catch (Exception ex)
-            {
-                General.Mes(ex.Message, MessageBoxIcon.Exclamation);
-                return false;
-            }
-        }
-
         private void btnBuildDirect_Click(object sender, EventArgs e)
         {
             if (!Directory.Exists(compilePath))
@@ -201,14 +158,12 @@ namespace html2apk
                 General.Mes("Please use the first button to build the files, operation aborted!", MessageBoxIcon.Exclamation);
                 return;
             }
-
-            if (string.IsNullOrEmpty(txtNamespace.Text))
+            else if (string.IsNullOrEmpty(txtNamespace.Text))
             {
                 General.Mes("Please fill the namespace, operation aborted!", MessageBoxIcon.Exclamation);
                 return;
             }
 
-            //compile
             string apkFilePath = Path.Combine(Application.StartupPath, txtNamespace.Text + ".apk");
             if (File.Exists(apkFilePath))
             {
@@ -217,7 +172,7 @@ namespace html2apk
             }
 
             //apktool
-            bool assemblyResult = Compile(javaFilePath, string.Format("-jar \"{0}\" b \"{1}\" --output \"{2}\"", apkToolFilePath, compilePath, apkFilePath));
+            bool assemblyResult = General.Run(General.javaFilePath, string.Format("-jar \"{0}\" b \"{1}\" --output \"{2}\"", apkToolFilePath, compilePath, apkFilePath));
 
             if (!assemblyResult)
             {
@@ -226,7 +181,7 @@ namespace html2apk
             }
 
             //sign
-            bool signResult = Compile(javaFilePath, string.Format("-jar \"{0}\" -a \"{1}\"", signerFilePath, apkFilePath));
+            bool signResult = General.Run(General.javaFilePath, string.Format("-jar \"{0}\" -a \"{1}\"", General.signerFilePath, apkFilePath));
 
             if (!signResult)
             {
@@ -234,7 +189,13 @@ namespace html2apk
                 return;
             }
             else
-                General.Mes(string.Format("Please use the \n\n{0}-aligned-debugSigned.apk\n\nis near the application", txtNamespace.Text));
+                General.Mes(string.Format("Built & Signed successfully! Please use the \n\n{0}-aligned-debugSigned.apk\n\nis near the application", txtNamespace.Text));
+        }
+
+        private void btnSign4Release_Click(object sender, EventArgs e)
+        {
+            frmSign4Release x = new frmSign4Release();
+            x.ShowDialog();
         }
 
     }

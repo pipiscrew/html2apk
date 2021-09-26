@@ -9,7 +9,17 @@ Do you have ready a **html5 / javascript** application (plain, jquery, vue, angu
 * [website2apk](https://websitetoapk.com/) (trial) you get `1mb` for a `hello world`  
 
 &nbsp;
-> Oracle.Java required
+| software    | helloworld filesize |
+| ----------- | -------------------- |
+| DecSoft     | 2mb                  |
+| website2apk | 1mb                  |
+| html2apk    | 30kb                 |
+
+&nbsp;
+> Oracle.Java required  
+
+&nbsp;
+[project homepage](https://www.pipiscrew.com/works/html2apk/)
 
 &nbsp;
 ## This project uses the following 3rd-party dependencies :  

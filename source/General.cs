@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace html2apk
 {
     public static class General
     {
+        internal static string javaFilePath = General.GetFullPathFromWindows("java.exe");
+        internal static string signerFilePath = Path.Combine(Application.StartupPath, "tools", "uber-apk-signer-0.2.0.jar");
+
         //Check if EXE exists to environment path
         public static string GetFullPathFromWindows(string exeName)
         { //https://try2explore.com/questions/10229289
@@ -77,5 +78,30 @@ namespace html2apk
                 }
             }
         }
+
+        internal static bool Run(string exeFilepath, string args)
+        {
+            try
+            {
+                Process msbProcess = new Process();
+                msbProcess.StartInfo.FileName = Path.GetFileName(exeFilepath);
+                msbProcess.StartInfo.WorkingDirectory = Path.GetDirectoryName(exeFilepath);
+                msbProcess.StartInfo.Arguments = args;
+
+                msbProcess.Start();
+                msbProcess.WaitForExit();
+
+                if (msbProcess.ExitCode != 0)
+                    return false;
+                else
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                General.Mes(ex.Message, MessageBoxIcon.Exclamation);
+                return false;
+            }
+        }
+
     }
 }
