@@ -19,7 +19,11 @@ Do you have ready a **html5 / javascript** application (plain, jquery, vue, angu
 > Oracle.Java required  
 
 &nbsp;
+&nbsp;
 [project homepage](https://www.pipiscrew.com/works/html2apk/)
+
+&nbsp;
+> Apparently Google stop accepting APKs from AUGUST 2021, now using AAB (aka Android App Bundles)
 
 &nbsp;
 ## This project uses the following 3rd-party dependencies :  
