@@ -7,13 +7,13 @@ Do you have ready a **html5 / javascript** application (plain, jquery, vue, angu
 
 * [DecSoft App Builder](https://www.decsoftutils.com/appbuilder/) (trial) which asking you to install apache cordova (as result you get `2mb` for a `hello world`) 
 * [website2apk](https://websitetoapk.com/) (trial) you get `1mb` for a `hello world`  
-* [GameDev_ToolMaker](https://store.steampowered.com/app/1463740/HTML_2_APK_Compiler/) (unreleased trial) you get `1.2mb` for a `hello world`  
+* [GameDev_ToolMaker HTML 2 APK Compiler](https://store.steampowered.com/app/1463740/HTML_2_APK_Compiler/) (unreleased trial) you get `1.2mb` for a `hello world`  
 
 &nbsp;
 | software    | helloworld filesize |
 | ----------- | -------------------- |
 | DecSoft     | 2.0mb                  |
-| GameDev_ToolMaker.HTML 2 APK Compiler | 1.2mb|
+| GameDev_ToolMaker | 1.2mb|
 | website2apk | 1.0mb                  |
 | html2apk    | 30kb                 |  
 
