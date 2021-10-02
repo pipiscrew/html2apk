@@ -13,6 +13,7 @@ Do you have ready a **html5 / javascript** application (plain, jquery, vue, angu
 | ----------- | -------------------- |
 | DecSoft     | 2mb                  |
 | website2apk | 1mb                  |
+| GameDev_ToolMaker.HTML 2 APK Compiler | 1.2mb                  |
 | html2apk    | 30kb                 |
 
 &nbsp;
