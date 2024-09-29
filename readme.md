@@ -27,7 +27,7 @@ Do you have ready a **html5 / javascript** application (plain, jquery, vue, angu
 * [project homepage](https://www.pipiscrew.com/works/html2apk/)  
 
 &nbsp;
-> Apparently Google stop accepting APKs from AUGUST 2021, now using AAB (aka Android App Bundles)
+> Apparently Google stop accepting APKs from AUGUST 2021, now using AAB (aka Android App Bundles) - old devices can use [SAI](https://github.com/Aefyr/SAI). Alternative supporting XAPK2APK is [APK Toolkit](https://xdaforums.com/t/tool-apk-toolkit-v1-3-windows.4572881/)
 
 &nbsp;
 ## required 
